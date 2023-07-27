@@ -13,10 +13,9 @@ use Illuminate\Database\Eloquent\Model;
 class Usuario extends Authenticatable
 {
     protected $table='usuario';
-
     protected $primaryKey='id';
 
-    public $timestamps=true;
+    public $timestamps=false;
 
 
     protected $fillable =[
