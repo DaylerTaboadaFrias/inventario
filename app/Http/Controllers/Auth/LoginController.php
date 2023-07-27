@@ -51,7 +51,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
             
-                return redirect('/menu');
+                return redirect('/perfil');
         } else {
             return redirect()->back();
         }
