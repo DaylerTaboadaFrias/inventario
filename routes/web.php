@@ -92,6 +92,7 @@ Route::post('lienzo/delete',[App\Http\Controllers\LienzoController::class,'destr
 
 
 Route::get('perfil',[PerfilController::class,'index'])->name('perfil.index');
+Route::get('menu',[PerfilController::class,'index'])->name('perfil.index');
 
 Route::patch('/perfil/{user}/{modo}',[PerfilController::class,'updateDiaNoche'])->name('perfil.diaNoche');
 
