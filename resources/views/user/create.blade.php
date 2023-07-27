@@ -29,9 +29,9 @@
 				<div class="form-group row">
 					<label class="col-form-label col-md-2">Tipo usuario</label>
 					<div class="col-md-10">
-						<select class="form-control select" data-fouc="" id="tipoUsuario" name="tipoUsuario" required>
-							<option value="1" selected>Administrador</option>
-							<option value="2">Participante</option>
+						<select class="form-control select" data-fouc="" id="rol" name="rol" required>
+							<option value="Administrativo" selected>Administrativo</option>
+							<option value="Empleado">Empleado</option>
 						</select>
 					</div>
 				</div>	
@@ -41,12 +41,7 @@
 						<input type="text" class="form-control font-weight-bold" id="password" name="password"  placeholder="Password" required>
 					</div>
 				</div>	
-				<div class="form-group row">
-					<label class="col-form-label col-md-2">Perfil</label>
-					<div class="col-md-10">
-						<input type="file" class="form-control font-weight-bold" id="perfil" name="perfil" accept="image/jpg, image/jpeg,image/png" placeholder="Perfil" required>
-					</div>
-				</div>	
+					
 			</fieldset>
 			<div class="text-right">
 				<button id="guardar" type="button" class="btn btn-primary">Guardar <i class="icon-paperplane ml-2"></i></button>

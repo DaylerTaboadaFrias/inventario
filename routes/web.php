@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PerfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,7 @@ Route::get('/error', function () {
 });
 
 
-Route::post('logout', [App\Http\Controllers\Auth\LoginController::class,'logout']);
+Route::post('logout', [App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
 Route::get('login', [App\Http\Controllers\Auth\LoginController::class,'redirectLogin']);
 Route::post('login', [App\Http\Controllers\Auth\LoginController::class,'login']);
 
@@ -90,6 +91,9 @@ Route::post('lienzo/update',[App\Http\Controllers\LienzoController::class,'updat
 Route::post('lienzo/delete',[App\Http\Controllers\LienzoController::class,'destroy']);
 
 
+Route::get('perfil',[PerfilController::class,'index'])->name('perfil.index');
+
+Route::patch('/perfil/{user}/{modo}',[PerfilController::class,'updateDiaNoche'])->name('perfil.diaNoche');
 
 Route::get('participante',[App\Http\Controllers\ParticipanteController::class,'index']);
 Route::get('participante/{id}',[App\Http\Controllers\ParticipanteController::class,'show']);

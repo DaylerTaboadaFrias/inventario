@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Hash;
+use DB;
 use Auth;
 use File;
-use DB;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
 
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
-    protected $table='users';
+    protected $table='usuario';
 
     protected $primaryKey='id';
 
@@ -19,13 +20,15 @@ class Usuario extends Model
 
 
     protected $fillable =[
-		'name',
-		'perfil',	
+		'nombre',
 		'email',	
 		'password',	
-        'tipoUsuario', 
-        'password', 
-		'estado'
+		'rol',	
+		'remember_token',	
+        'created_at', 
+        'updated_at', 
+        'is_dia', 
+        'tema'
     ];
 
     protected $guarded =[
@@ -89,10 +92,11 @@ class Usuario extends Model
     {
         $usuario = new Usuario;
         $usuario->name = $request->input('name'); 
-        $usuario->email = $request->input('email');    
+        $usuario->email = $request->input('email');
+        $usuario->rol = $request->input('rol');   
+        $usuario->tema = "";   
+        $usuario->is_dia = false;   
         $usuario->password =  Hash::make($request->input('password'));
-        $usuario->estado = 0;
-        $usuario->tipoUsuario = $request->input('tipoUsuario');
         $usuario->save();
         return $usuario;
     }
@@ -123,10 +127,10 @@ class Usuario extends Model
         $usuario = Usuario::findOrFail($request->input('id'));
         $usuario->name = $request->input('name');
         $usuario->email = $request->input('email');
+        $usuario->rol = $request->input('rol');   
         if ($request->input('password')) {
             $usuario->password =  Hash::make($request->input('password'));
         }
-        $usuario->tipoUsuario = $request->input('tipoUsuario');
         $usuario->update();
         return $usuario;
     }

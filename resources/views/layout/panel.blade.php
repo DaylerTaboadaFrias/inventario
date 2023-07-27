@@ -36,7 +36,23 @@
 <body>
 
     <!-- Main navbar -->
-    <div class="navbar navbar-expand-md navbar-dark">
+    <div class="navbar navbar-expand-md navbar-dark 
+    @auth()
+        @switch(auth()->user()->tema)
+            @case('Infantil')
+                bg-warning
+            @break
+            @case('Juvenil')
+                bg-danger
+            @break
+            @case('Adultos')
+                bg-secondary
+            @break
+            @default
+                bg-white
+        @endswitch
+    @endauth
+    ">
         <div class="navbar-brand">
             <a href="index.html" class="d-inline-block">
                 <img src="{{asset('assets/logo.png')}}" alt="">
@@ -103,7 +119,23 @@
     <div class="page-content">
 
         <!-- Main sidebar -->
-        <div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+        <div class="sidebar sidebar-dark sidebar-main sidebar-expand-md
+        @auth()
+        @switch(auth()->user()->tema)
+            @case('Infantil')
+                bg-warning
+            @break
+            @case('Juvenil')
+                bg-danger
+            @break
+            @case('Adultos')
+                bg-secondary
+            @break
+            @default
+                bg-white
+        @endswitch
+    @endauth
+        ">
 
             <!-- Sidebar mobile toggler -->
             <div class="sidebar-mobile-toggler text-center">
@@ -120,10 +152,26 @@
 
 
             <!-- Sidebar content -->
-            <div class="sidebar-content">
+            <div class="sidebar-content
+            @auth()
+        @switch(auth()->user()->tema)
+            @case('Infantil')
+                bg-warning
+            @break
+            @case('Juvenil')
+                bg-danger
+            @break
+            @case('Adultos')
+                bg-secondary
+            @break
+            @default
+                bg-white
+        @endswitch
+    @endauth
+            ">
 
                 <!-- User menu -->
-                <div class="sidebar-user">
+                <div class="sidebar-user ">
                     <div class="card-body">
                         <div class="media">
                             <div class="mr-3">
@@ -147,12 +195,28 @@
 
 
                 <!-- Main navigation -->
-                <div class="card card-sidebar-mobile">
-                    <ul class="nav nav-sidebar" data-nav-type="accordion">
+                <div class="card card-sidebar-mobile
+                @auth()
+        @switch(auth()->user()->tema)
+            @case('Infantil')
+                bg-warning
+            @break
+            @case('Juvenil')
+                bg-danger
+            @break
+            @case('Adultos')
+                bg-secondary
+            @break
+            @default
+                bg-white
+        @endswitch
+    @endauth
+                ">
+                    <ul class="nav nav-sidebar 
+                    " data-nav-type="accordion">
 
                         <!-- Main -->
                         <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu" title="Main"></i></li>
-                        @if(auth()->user()->tipoUsuario==1)
                         <li id="navUser" class="nav-item">
                             <a href="{{url('user')}}" class="nav-link">
                                 <i class="icon-user"></i>
@@ -169,17 +233,7 @@
                                 </span>
                             </a>
                         </li>
-                        @endif
-                        @if(auth()->user()->tipoUsuario==2)
-                        <li id="navJuego" class="nav-item">
-                            <a href="{{url('participante')}}" class="nav-link">
-                                <i class="icon-calendar"></i>
-                                <span>
-                                    Diagrama
-                                </span>
-                            </a>
-                        </li>
-                        @endif
+                       
                     </ul>
                 </div>
                 <!-- /main navigation -->
@@ -192,7 +246,20 @@
 
 
         <!-- Main content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper  
+        @auth()
+            @switch(auth()->user()->is_dia)
+                @case(true)
+                    bg-white
+                @break
+                @case(false)
+                    bg-dark
+                @break
+                @default
+                    bg-white
+            @endswitch
+        @endauth
+        ">
 
             <!-- Content area -->
             <div class="content">
@@ -212,7 +279,16 @@
 
                 <div class="navbar-collapse collapse" id="navbar-footer">
                     <span class="navbar-text">
-                        &copy; 2022 
+                        &copy; 
+                        <span>
+                            @isset($_COOKIE['contador'])
+                                {{setcookie('contador', $_COOKIE['contador']+1, time()+30*24*60*60)}}
+                                {{"Visitas: " . $_COOKIE['contador']}}
+                            @else
+                                {{setcookie('contador', 41, time()+30*24*60*60)}}
+                                {{"Visitas: 41"}}
+                            @endisset
+                        </span> 
                 </div>
             </div>
             <!-- /footer -->

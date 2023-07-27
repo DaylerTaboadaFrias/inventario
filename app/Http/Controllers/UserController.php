@@ -61,8 +61,6 @@ class UserController extends Controller
             DB::beginTransaction();
             if (!Usuario::verificarEmailExiste($request)) {
                 $usuario = Usuario::createAdministrador($request);
-                $destinationPath = Usuario::createDirectorioPorIdAdministrador($usuario->id);
-                Usuario::actualizarPerfilPorIdAdministrador($request,$usuario->id,$destinationPath);
             }else{
                 return response()->json(['codigo'=>1, 'mensaje'=>'El correo ingresado alguien lo esta ocupando, por favor comuniquese con soporte.']);
             }
@@ -90,8 +88,6 @@ class UserController extends Controller
                 if ($request->input('password')) {
                     if (trim($request->input('password'))!='') {
                         $usuario = Usuario::updateAdministrador($request);
-                        $destinationPath = Usuario::createDirectorioPorIdAdministrador($usuario->id);
-                        Usuario::actualizarPerfilPorIdAdministrador($request,$usuario->id,$destinationPath);  
                     }else{
                         return response()->json(['codigo'=>1, 'mensaje'=>'El password ingresado tiene caracteres no validos']);
                     }                     

@@ -50,15 +50,8 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
-            if (!Usuario::verificarAdministradorHabilitadoPorEmail($request->input('email'))) {
-                Auth::logout();
-                return redirect()->back();
-            }
-            if(Usuario::verificarAdministrador($request->input('email'))){
-                return redirect('/user');
-            }else{
-                return redirect('/participante');
-            }
+            
+                return redirect('/menu');
         } else {
             return redirect()->back();
         }
