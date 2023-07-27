@@ -138,7 +138,7 @@ class Usuario extends Authenticatable
 
     public static function verificarEmailExiste($request)
     {
-        $emails = DB::table('users')->where('email',$request->input('email'))->get();
+        $emails = DB::table('usuario')->where('email',$request->input('email'))->get();
         if (count($emails)>0) {
             return true;
         }else{
@@ -148,7 +148,7 @@ class Usuario extends Authenticatable
 
     public static function verificarEmailExisteMenosAdministradorAEditar($request)
     {
-        $emails = DB::table('users')->where('email',$request->input('email'))->where('users.id','<>',$request->input('id'))->get();
+        $emails = DB::table('usuario')->where('email',$request->input('email'))->where('usuario.id','<>',$request->input('id'))->get();
         if (count($emails)>0) {
             return true;
         }else{
